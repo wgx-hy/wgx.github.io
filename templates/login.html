@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简约登录页面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 50px 40px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-header h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .login-header p {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        .login-form {
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #a0aec0;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e1e5eb;
+            border-radius: 14px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            height: 54px;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.15);
+            background-color: #fff;
+        }
+
+        .input-group input:focus + i {
+            color: #3498db;
+        }
+
+        .input-group input::placeholder {
+            color: #a0aec0;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #a0aec0;
+            font-size: 18px;
+        }
+
+        .password-toggle:hover {
+            color: #3498db;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember input {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .remember label {
+            color: #4a5568;
+            cursor: pointer;
+        }
+
+        .forgot a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .forgot a:hover {
+            text-decoration: underline;
+            color: #2c5282;
+        }
+
+        /* 登录按钮样式 - 已修复 */
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            width: 100%;
+            margin-bottom: 25px;
+            height: 54px;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .register-link {
+            text-align: center;
+            color: #718096;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: all 0.2s ease;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+            color: #2c5282;
+        }
+
+        .brand {
+            text-align: center;
+            margin-top: 40px;
+            color: #a0aec0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .brand span {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 35px 25px;
+                border-radius: 18px;
+            }
+
+            .login-header h1 {
+                font-size: 28px;
+            }
+
+            .input-group input {
+                padding-left: 45px;
+                height: 50px;
+            }
+
+            .submit-btn {
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>欢迎回来</h1>
+            <p>请登录您的账户以继续访问</p>
+        </div>
+
+        <form class="login-form" action="/login" method="post">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" placeholder="请输入用户名" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="请输入密码" required>
+                <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+            </div>
+
+            <div class="remember-forgot">
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">记住我</label>
+                </div>
+                <div class="forgot">
+                    <a href="#">忘记密码?</a>
+                </div>
+            </div>
+
+            <!-- 登录按钮已添加 -->
+            <button type="submit" class="submit-btn">登录</button>
+        </form>
+
+        <div class="register-link">
+            还没有账户? <a href="register">立即注册</a>
+        </div>
+
+        <div class="brand">
+            © 2025 <span>天禧智能平台</span>
+        </div>
+    </div>
+
+    <script>
+        // 密码可见性切换功能
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function() {
+            // 切换密码输入类型
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            // 切换眼睛图标
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
